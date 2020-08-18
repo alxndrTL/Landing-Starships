@@ -62,7 +62,7 @@ This learning is done, in this case, using the [PPO](https://openai.com/blog/ope
 
   ​	Also, the engine sound as well as the RCS sound you can hear on the demo is procedurally generated. Thanks to [Joe Strout](https://www.gamasutra.com/blogs/author/JoeStrout/1001725/) for sharing this "library".
 
-  
+  [GIF ALTERNANCE ENTRE VRAIES PHOTOS BC ET RENDERS]
 
 - ### Could Reinforcement Learning be used by SpaceX ?
 
