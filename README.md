@@ -78,8 +78,8 @@ This learning is done, in this case, using the [PPO](https://openai.com/blog/ope
   ​	Of course, and these have inspired me in the making of this one (as well as the test campaign on SN5 for sure). The first well known work is the example environment of the gym library by OpenAI, the Lunar Lander. The goal of this environment is to control a lander to make it land on the Moon. However, the environment can be considered to be simpler than what is used here as there is less action, the agent only needs to worry about 2 dimensions and has to control the lander on a much smaller height. That's why there is no special need for exploration strategies on this environment.
   
   <p align="center">
- <img src="https://leimao.github.io/images/article/2017-05-04-REINFORCE-Policy-Gradient/lunarlander.png" width=700/>
-</p>
+    <img src="https://leimao.github.io/images/article/2017-05-04-REINFORCE-Policy-Gradient/lunarlander.png" width=700/>
+  </p>
 
   ​	I have found a work similar to what I've done in Unity, this time landing the Falcon 9's first stage. The work is done by [u/SwissArmyApple](https://www.reddit.com/user/SwissArmyApple/). He also uses PPO as a training algorithm.
 
