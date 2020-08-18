@@ -23,7 +23,7 @@ The adjective "deep" refers to the fact that the algorithm used here uses "deep"
 
 This learning is done, in this case, using the [PPO](https://openai.com/blog/openai-baselines-ppo/) algorithm, developed by [OpenAI](https://openai.com/), and implemented by the Unity team in Python. Learn more about the deep RL implementation in the Technical Details section.
 
-
+[GIF RAPIDE DU LEARNING VISIBLE]
 
 ## Discussion and Technical Details
 
@@ -52,9 +52,9 @@ This learning is done, in this case, using the [PPO](https://openai.com/blog/ope
 
   ​	In order to get agent that are able to generalize well to different conditions, random initialization was used intensely during all the training. This had the positive of effect of making the agents more robust to variations in changes of initial condition. A direct effect of this could be observed during the training, where the altitude was incrementally increased (from 500m to 5km). At each increase (eg. from 900m to 1.5km), I could observe that the performance of the agent didn't drop by very much (less than expected considering the fact that the spawning altitude was considerably changed).
 
-  ​	Practically, the project is made in Unity, which has a nice toolkit called [Unity ML Agents](https://github.com/Unity-Technologies/ml-agents), which makes it possible to interact with an agent in Unity from Python. That is very useful as Python is a very famous language for ML and RL.
+  ​	Practically, the project is made in Unity, which has a nice toolkit called [Unity ML Agents](https://github.com/Unity-Technologies/ml-agents), which makes it possible to interact with an agent in Unity from Python. That is very useful as Python is a very famous language for ML and RL. Also, it supports parallel training of multiple agents in a single environment, which speeds up considerably the training. That's why you can see 32 Starships landing next to each other.
 
-  
+[GIF LANDINGS]  
 
 - ### Boca Chica landscape and 3D models
 
