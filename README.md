@@ -39,7 +39,7 @@ This learning is done, in this case, using the [PPO](https://openai.com/blog/ope
 
   ​	The first limitation of this simulation is of course that it doesn't take into account the atmosphere. It follows that precise trajectories and speeds are not followed. Also, another limitation is that the agent is able to turn off and on the 3 main engines instantly (1) and for an unlimited number of times (2), and same for the RCS. This does not really reflects reality as the main engines are complex machines which (1) doesn't start instantly and (2) can't restart for a large number of times. 
 
-  BELLY FLOP MANEUVER ?
+  [GIF BELLY FLOP MANEUVER]
 
 - ### About the Deep Reinforcement Learning implementation
 
