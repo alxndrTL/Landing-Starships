@@ -20,7 +20,7 @@ This learning is done, in this case, using the PPO algorithm, developed by OpenA
 
 
 
-## Discussion, and Technical Details
+## Discussion and Technical Details
 
 - ### About the physical simulation and the landing
 
@@ -48,23 +48,44 @@ This learning is done, in this case, using the PPO algorithm, developed by OpenA
 
   ​	In order to get agent that are able to generalize well to different conditions, random initialization was used intensely during all the training. This had the positive of effect of making the agents more robust to variations in changes of initial condition. A direct effect of this could be observed during the training, where the altitude was incrementally increased (from 500m to 5km). At each increase (eg. from 900m to 1.5km), I could observe that the performance of the agent didn't drop by very much (less than expected considering the fact that the spawning altitude was considerably changed).
 
+  
 
+- ### Boca Chica landscape and 3D models
 
-et en vrai ? c'est ça qui est utilisé?
+  ​	The 3D models of the Boca Chica landscape as well as the Starship model was made in Blender by me. The landscape includes the famous SpaceX launch and buildsites located in Boca Chica Village, Texas. It was interesting modelling Starhopper, the tank farm, the Highbay, the Midbay, the Windbreak, SN5, SN6 and of course ... Bluezilla ! Special thanks to @NASASpaceflight and @RGVaerialphotos for making available precious pictures of SpaceX site in Boca Chica !
 
-+parler des models fait dans Blender ?
+  ​	Also, the engine sound as well as the RCS sound you can hear on the demo is procedurally generated. Thanks to Joe Strout (https://www.gamasutra.com/blogs/author/JoeStrout/1001725/) for sharing this "library".
 
-du son ?
+  
 
+- ### Could Reinforcement Learning be used by SpaceX ?
 
+     Currently, SpaceX doesn't use Reinforcement Learning as a control method to land its rocket. Nor does their rocket uses ML as a control technique. Indeed, classic optimal control algorithms (stuff like PID, MPC from control theory) are much more robust and predictable than ML algorithms, and particularly deep RL algorithms like PPO. One reason for that is that we let the algorithm learn what it wants to learn, as long as what it learns helps it get more reward. This approach, while allowing the algorithm to reach optimal performance, limits our view of what the algorithm learns, and thus our ability of what to expect from this algorithm under a certain circumstance. 
 
-other work ?
+  ​	Furthermore, a big caveat of RL is its need of a large amount of interaction with the environment to get good performance. Worse than that is the fact that at the beginning of the training, the agent executes actions at random : we don't want the controller of the first Starship landing on Mars to execute actions randomly. Something that however can be done is train the agent in the simulation (something similar to mine, although MUCH more closer to reality that mine is) and then put the agent in the real world, where it could fine-tune its model (finish his training).
 
+  ​	RL is not yet ready for practical use, and so it's far less for such tasks. However, I'm sure that we're only a few breakthrough papers away from seeing RL being able to scale to real world problems. And then, we'll talk about Starship landing about using RL.
 
+  
+
+- ### Has there been other work similar to this ?
+
+  ​	Of course, and these have inspired me in the making of this one (as well as the test campaign on SN5 for sure). The first well known work is the example environment of the gym library by OpenAI, the Lunar Lander. The goal of this environment is to control a lander to make it land on the Moon. However, the environment can be considered to be simpler than what is used here as there is less action, the agent only needs to worry about 2 dimensions and has to control the lander on a much smaller height. That's why there is no special need for exploration strategies on this environment.
+
+  ​	I have found a work similar to what I've done in Unity, this time landing the Falcon 9's first stage. The work is done by [u/SwissArmyApple](https://www.reddit.com/user/SwissArmyApple/). He also uses PPO as a training algorithm.
+
+  
 
 ## Results
+
+​	The algorithm trained for a total of about 
 
 une partie résults, ce qui a marché et ce qui a moins bien marché avec les hyperparams. (+NN)
 
 
 
+comparer le nombre de params avec DQN Atari...
+
+DQN : - de 10K params, sur 10M de steps MAIS c'était DQN
+
+40K params, training = 200M donc 20heures
