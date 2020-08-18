@@ -81,7 +81,7 @@ This learning is done, in this case, using the [PPO](https://openai.com/blog/ope
     <img src="https://leimao.github.io/images/article/2017-05-04-REINFORCE-Policy-Gradient/lunarlander.png" width=700/>
   </p>
 
-  ​	I have found a work similar to what I've done in Unity, this time landing the Falcon 9's first stage. The work is done by [u/SwissArmyApple](https://www.reddit.com/user/SwissArmyApple/). He also uses PPO as a training algorithm.
+  ​	I have found a work similar to what I've done in Unity, this time landing the Falcon 9's first stage. The work is done by [u/SwissArmyApple](https://www.reddit.com/user/SwissArmyApple/). He also uses PPO as the training algorithm.
 
   
 
