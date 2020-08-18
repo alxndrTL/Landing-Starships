@@ -11,7 +11,7 @@ Starship is a fully reusable launch vehicle which is currently being developed b
 The second stage of the rocket, Starship, will perform a special reentry profile to slow down enough as shown below (it will be coming from orbit so will have a high speed w.r.t the air surrounding it) : it will keep during its descent a high Angle Of Attack (60°) and then will fall like a sky diver, belly first. A few seconds before touchdown, it will executes a maneuver to bring it from belly flop to tail down to actually land vertical, on its landing legs.
 
 <p align="center">
-  <img src="https://i.imgur.com/ts7LfUQ.png" width=100/>
+  <img src="https://i.imgur.com/ts7LfUQ.png" width=700/>
 </p>
 
 
