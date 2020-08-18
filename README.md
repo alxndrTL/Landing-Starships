@@ -48,6 +48,8 @@ This learning is done, in this case, using the PPO algorithm, developed by OpenA
 
   ​	In order to get agent that are able to generalize well to different conditions, random initialization was used intensely during all the training. This had the positive of effect of making the agents more robust to variations in changes of initial condition. A direct effect of this could be observed during the training, where the altitude was incrementally increased (from 500m to 5km). At each increase (eg. from 900m to 1.5km), I could observe that the performance of the agent didn't drop by very much (less than expected considering the fact that the spawning altitude was considerably changed).
 
+  ​	Practically, the project is made in Unity, which has a nice toolkit called Unity ML Agents, which makes it possible to interact with an agent in Unity from Python. That is very useful as Python is a very famous language for ML and RL.
+
   
 
 - ### Boca Chica landscape and 3D models
@@ -78,14 +80,17 @@ This learning is done, in this case, using the PPO algorithm, developed by OpenA
 
 ## Results
 
-​	The algorithm trained for a total of about 
+​	The total number of parameters in the neural network is about 40k. The algorithm trained for a total of about 200 millions timesteps, which, on my Intel i7 machine, took about 20 hours. A trained agent has a mean reward of about 0.98, meaning that after training, the agent lands Starship successfully 98% of the time. I could have stopped training way before 20 hours and still get good performance (>95%) but of course, that performance, even the 98% one, isn't acceptable for practical use. With more training and good hyperparameters tuning, I do believe that performance could go higher but again, the "black box" effect makes the practical use of RL critical for this task.
 
-une partie résults, ce qui a marché et ce qui a moins bien marché avec les hyperparams. (+NN)
+[PHOTO PERFS?]
 
 
 
-comparer le nombre de params avec DQN Atari...
+​	For comparison, DeepMind's famous implementation of Deep Q-learning (DQN) on Atari games uses less than 10K parameters, and trained for a total of 10 millions steps with a CNN neural network (ie. the agent see screenshots of the game, as we humans do). Two reasons can explain the big difference of steps required to learn : first, well, I made this project on my own during a few weeks. Second, the algorithm used by Google DeepMind, called DQN, is fundamentally different than PPO (it's still deep reinforcement learning though). DQN has the advantage of being very data efficient : it can actually learn from the experience generated at anytime during the training. Conversely, PPO throw data away as soon as it has made an update with it : it can't use data from past trajectories.
 
-DQN : - de 10K params, sur 10M de steps MAIS c'était DQN
+​	The main difficulty while making this project was getting the right reward function. I tried at the beginning a denser reward function, which could tell the agent how do the task (ie. distance to the pad, orientation of the rocket, collision speed...) but these were very hard to use as the agent maximized them in weird ways. For example, if you penalize the agent for colliding with the ground too fast, then it wont collide at all and thus get no negative reward. In general, you want a reward function that tell the agent what to do, and not how to do it, so that the agent do whatever it wants to actually achieve what you want it to do. The best reward function is thus a reward function that is maximized if and only if the agent preforms what you want it to do.
 
-40K params, training = 200M donc 20heures
+​	Before testing curriculum learning and imitation learning as exploration strategies, I tried implementing an ICM - Intrinsic Curiosity Module - which creates some kind of intrinsic curiosity that encourages the agent to explore the environment. However, ICM didn't show great results.
+
+​	Concerning hyperparameters, I used a three-layers neural network (2 hidden layers of 128 units), a learning rate of 3.0E-4 and a batch size of 64 (and then increased it later at 128). For more information, please see the configuration files.
+
