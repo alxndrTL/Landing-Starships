@@ -34,13 +34,7 @@ This learning is done, in this case, using the PPO algorithm, developed by OpenA
 
   ​    Interestingly, no matter the reward function used, the agents always converged on one special (and very efficient) landing profile : the suicide burn, or, as SpaceX calls it, the hoverslam. This kind of maneuver, well know of KSP players, is simple : fire the main engine to slow down at the very last moment. As pointed out by Scott Manley (@DJSnM) in his video (https://www.youtube.com/watch?v=T3_Voh7NgDE), this maneuver, while being dangerous, is the most optimal one to land considering the fuel it requires. For those wondering, yes the reward function only rewards the agent of successfully landing (regardless of the fuel it used for landing), but the overall learning algorithm tries to maximize the reward per timestep. So for example, during 100k timesteps, if you use a safe landing method, then you will be able to achieve less landings than if you used the hoverslam technique, because it is way more fuel as well as time efficient.
 
-
-
-limitation : engine off et on ilimité
-
-
-
-init ?
+  ​	The first limitation of this simulation is of course that it doesn't take into account the atmosphere. It follows that precise trajectories and speeds are not followed. Also, another limitation is that the agent is able to turn off and on the 3 main engines instantly (1) and for an unlimited number of times (2), and same for the RCS. This does not really reflects reality as the main engines are complex machines which (1) doesn't start instantly and (2) can't restart for a large number of times. 
 
 - ### About the Reinforcement Learning implementation
 
