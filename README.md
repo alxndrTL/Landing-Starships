@@ -1,10 +1,10 @@
-## Using Reinforcement Learning to make rockets land
+## Using Reinforcement Learning 🤖 to make rockets land 🚀
 
 This project uses artificial intelligence algorithms, and more precisely deep reinforcement learning algorithms, to make an agent learn by itself how to land an orbital class rocket, Starship. The agent is the algorithm which can observe the environment and choose actions to complete some task, here, landing the rocket. Before the so-called "training", the agent just go initialized and basically chooses actions at random. However, as the training continues, the agent gets reward for doing the task we want it to do : again, landing the rocket. Based on this reward and how he got it, the agent will update the parameters of its neural network in order to choose actions that led to this reward more probable.
 
 ### What is Starship ?
 
-Starship is a fully reusable launch vehicle which is currently being developed by SpaceX. Starship refers to two things : the rocket as a whole (ie the first stage, named Super Heavy, and the second stage) as well as the second stage itself. In this project, Starship refers to the second stage. This whole next-gen rocket, with its crazy diameter of 9 meters, will be capable of delivering more than 100 tons to Low Earth Orbit, while having a reusable first and second stage. Starships are currently being built in Boca Chica Village, Texas, and, maybe one day, will bring humans to Mars.
+Starship is a fully reusable launch vehicle which is currently being developed by SpaceX. Starship refers to two things : the rocket as a whole (ie. the first stage, named Super Heavy, and the second stage) as well as the second stage itself. In this project, Starship refers to the second stage. This whole next-gen rocket, with its crazy diameter of 9 meters, will be capable of delivering more than 100 tons to Low Earth Orbit, while having a reusable first and second stage. Starships are currently being built in Boca Chica Village, Texas, and, maybe one day, will bring humans to Mars.
 
 The second stage of the rocket, Starship, will perform a special reentry profile to slow down enough as shown below (it will be coming from orbit so will have a high speed w.r.t the air surrounding it) : it will keep during its descent a high Angle Of Attack (60°) and then will fall like a sky diver, belly first. A few seconds before touchdown, it will executes a maneuver to bring it from belly flop to tail down to actually land vertical, on its landing legs.
 
@@ -16,7 +16,7 @@ Reinforcement learning is a subfield of AI that enables autonomous agents to lea
 
 The adjective "deep" refers to the fact that the algorithm used here uses "deep" neural networks, ie. neural networks with multiple hidden units. This "deepness" allows the agent to learn complex relationship between the agent to choose and the state the agent sees.
 
-This learning is done, in this case, using the PPO algorithm, developed by OpenAI, and implemented by the Unity team in Python. Learn more about the deep RL implementation in the Technical Details section.
+This learning is done, in this case, using the [PPO](https://openai.com/blog/openai-baselines-ppo/) algorithm, developed by [OpenAI](https://openai.com/), and implemented by the Unity team in Python. Learn more about the deep RL implementation in the Technical Details section.
 
 
 
@@ -24,15 +24,13 @@ This learning is done, in this case, using the PPO algorithm, developed by OpenA
 
 - ### About the physical simulation and the landing
 
-  TODO : decaller le tout non?
-
   ​	In reality, to achieve a landing, Starship will essentially be able to control the throttle level of its 3 engines, the gimbal of these engines, the RCS side thrusters and the position of its body flap and top fins.
 
   ​	In the simulation I created, the atmosphere was not considered and thus the agent doesn't get to control the position of the flaps. Furthermore, I chose to only provide to the agent one throttle level, firstly because then the RL problem was a discrete action problem, and also because from physical point of view, achieving landing with the full throttle is optimal (more on that later). Apart from that, the agent lands the Starship using TVC (engine gimballing) with a 7° angle (that number comes from what the Merlin engine is capable of on the Falcon 9's first stage). The agent can of course turn off and on the 3 main engines, as well as a total of 4 RCS thrusters, to help stabilize the orientation of the rocket. With the combination of TVC and RCS, the agent can thus control the roll and pitch of the rocket (the yaw control is neglected)
 
   ​	At the start of the simulation, the rocket spawns at an altitude of about 5 km, with a random initial velocity and in the belly flop position (again, with a bit of random initialization). The center of mass of rocket is set at about 2/3 from the top of the rocket. A landing is considered successful if the speed of the rocket at touchdown is less than 5m/s and the rocket stands upright.
 
-  ​    Interestingly, no matter the reward function used, the agents always converged on one special (and very efficient) landing profile : the suicide burn, or, as SpaceX calls it, the hoverslam. This kind of maneuver, well know of KSP players, is simple : fire the main engine to slow down at the very last moment. As pointed out by Scott Manley (@DJSnM) in his video (https://www.youtube.com/watch?v=T3_Voh7NgDE), this maneuver, while being dangerous, is the most optimal one to land considering the fuel it requires. For those wondering, yes the reward function only rewards the agent of successfully landing (regardless of the fuel it used for landing), but the overall learning algorithm tries to maximize the reward per timestep. So for example, during 100k timesteps, if you use a safe landing method, then you will be able to achieve less landings than if you used the hoverslam technique, because it is way more fuel as well as time efficient.
+  ​    Interestingly, no matter the reward function used, the agents always converged on one special (and very efficient) landing profile : the suicide burn, or, as SpaceX calls it, the hoverslam. This kind of maneuver, well know of KSP players, is simple : fire the main engine to slow down at the very last moment. As pointed out by Scott Manley ([@DJSnM](https://twitter.com/DJSnM)) in his [video](https://www.youtube.com/watch?v=T3_Voh7NgDE), this maneuver, while being dangerous, is the most optimal one to land considering the fuel it requires. For those wondering, yes the reward function only rewards the agent of successfully landing (regardless of the fuel it used for landing), but the overall learning algorithm tries to maximize the reward per timestep. So for example, during 100k timesteps, if you use a safe landing method, then you will be able to achieve less landings than if you used the hoverslam technique, because it is way more fuel as well as time efficient.
 
   ​	The first limitation of this simulation is of course that it doesn't take into account the atmosphere. It follows that precise trajectories and speeds are not followed. Also, another limitation is that the agent is able to turn off and on the 3 main engines instantly (1) and for an unlimited number of times (2), and same for the RCS. This does not really reflects reality as the main engines are complex machines which (1) doesn't start instantly and (2) can't restart for a large number of times. 
 
@@ -48,15 +46,15 @@ This learning is done, in this case, using the PPO algorithm, developed by OpenA
 
   ​	In order to get agent that are able to generalize well to different conditions, random initialization was used intensely during all the training. This had the positive of effect of making the agents more robust to variations in changes of initial condition. A direct effect of this could be observed during the training, where the altitude was incrementally increased (from 500m to 5km). At each increase (eg. from 900m to 1.5km), I could observe that the performance of the agent didn't drop by very much (less than expected considering the fact that the spawning altitude was considerably changed).
 
-  ​	Practically, the project is made in Unity, which has a nice toolkit called Unity ML Agents, which makes it possible to interact with an agent in Unity from Python. That is very useful as Python is a very famous language for ML and RL.
+  ​	Practically, the project is made in Unity, which has a nice toolkit called [Unity ML Agents](https://github.com/Unity-Technologies/ml-agents), which makes it possible to interact with an agent in Unity from Python. That is very useful as Python is a very famous language for ML and RL.
 
   
 
 - ### Boca Chica landscape and 3D models
 
-  ​	The 3D models of the Boca Chica landscape as well as the Starship model was made in Blender by me. The landscape includes the famous SpaceX launch and buildsites located in Boca Chica Village, Texas. It was interesting modelling Starhopper, the tank farm, the Highbay, the Midbay, the Windbreak, SN5, SN6 and of course ... Bluezilla ! Special thanks to @NASASpaceflight and @RGVaerialphotos for making available precious pictures of SpaceX site in Boca Chica !
+  ​	The 3D models of the Boca Chica landscape as well as the Starship model was made in Blender by me. The landscape includes the famous SpaceX launch and [build](https://twitter.com/AlexandreTL2/status/1294345416964820994) sites located in Boca Chica Village, Texas. It was interesting modelling Starhopper, the tank farm, the Highbay, the Midbay, the Windbreak, SN5, SN6 and of course ... Bluezilla ! Special thanks to [@NASASpaceflight](https://twitter.com/NASASpaceflight) and [@RGVaerialphotos](https://twitter.com/RGVaerialphotos) for making available precious pictures of SpaceX site in Boca Chica !
 
-  ​	Also, the engine sound as well as the RCS sound you can hear on the demo is procedurally generated. Thanks to Joe Strout (https://www.gamasutra.com/blogs/author/JoeStrout/1001725/) for sharing this "library".
+  ​	Also, the engine sound as well as the RCS sound you can hear on the demo is procedurally generated. Thanks to [Joe Strout](https://www.gamasutra.com/blogs/author/JoeStrout/1001725/) for sharing this "library".
 
   
 
@@ -86,7 +84,7 @@ This learning is done, in this case, using the PPO algorithm, developed by OpenA
 
 
 
-​	For comparison, DeepMind's famous implementation of Deep Q-learning (DQN) on Atari games uses less than 10K parameters, and trained for a total of 10 millions steps with a CNN neural network (ie. the agent see screenshots of the game, as we humans do). Two reasons can explain the big difference of steps required to learn : first, well, I made this project on my own during a few weeks. Second, the algorithm used by Google DeepMind, called DQN, is fundamentally different than PPO (it's still deep reinforcement learning though). DQN has the advantage of being very data efficient : it can actually learn from the experience generated at anytime during the training. Conversely, PPO throw data away as soon as it has made an update with it : it can't use data from past trajectories.
+​	For comparison, [DeepMind](https://deepmind.com/)'s famous implementation of Deep Q-learning (DQN) on Atari games uses less than 10K parameters, and trained for a total of 10 millions steps with a CNN neural network (ie. the agent see screenshots of the game, as we humans do). Two reasons can explain the big difference of steps required to learn : first, well, I made this project on my own during a few weeks. Second, the algorithm used by Google DeepMind, called DQN, is fundamentally different than PPO (it's still deep reinforcement learning though). DQN has the advantage of being very data efficient : it can actually learn from the experience generated at anytime during the training. Conversely, PPO throw data away as soon as it has made an update with it : it can't use data from past trajectories.
 
 ​	The main difficulty while making this project was getting the right reward function. I tried at the beginning a denser reward function, which could tell the agent how do the task (ie. distance to the pad, orientation of the rocket, collision speed...) but these were very hard to use as the agent maximized them in weird ways. For example, if you penalize the agent for colliding with the ground too fast, then it wont collide at all and thus get no negative reward. In general, you want a reward function that tell the agent what to do, and not how to do it, so that the agent do whatever it wants to actually achieve what you want it to do. The best reward function is thus a reward function that is maximized if and only if the agent preforms what you want it to do.
 
