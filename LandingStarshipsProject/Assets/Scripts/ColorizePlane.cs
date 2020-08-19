@@ -13,6 +13,7 @@ public class ColorizePlane : MonoBehaviour
 
     public void Colorize(Color color)
     {
-        rendererComponent.material.color = color;
+        return;
+        //rendererComponent.material.color = color;
     }
 }

@@ -2551,8 +2551,6 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 1000
-  mainCam: {fileID: 0}
-  sideCam: {fileID: 0}
 --- !u!114 &2957465268776096328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2590,17 +2588,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5f31bbb37630cd4998f199984817c4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  throttle: 5000
   colorizePlane: {fileID: 2957465268710507265}
   centerOfMass: {x: 0, y: 1, z: 0}
   height: 0
-  x_offset: 0
   z_offset: 0
-  angle: 0
+  pitch_init_angle: 0
   z_init_speed: 0
   TVCangle: 0
   rcs_thurst: 0
   engine_thrust: 0
+  x_offset: 0
+  roll_init_angle: 5
 --- !u!114 &2957465268776096331
 MonoBehaviour:
   m_ObjectHideFlags: 0

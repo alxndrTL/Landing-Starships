@@ -7,7 +7,6 @@ using UnityEngine;
 [RequireComponent(typeof(PhysicDebugger))]
 public class RocketController : MonoBehaviour
 {
-    [Range(0, 10000)] public float throttle;
     public ColorizePlane colorizePlane;
     public Vector3 centerOfMass;
 
@@ -25,13 +24,14 @@ public class RocketController : MonoBehaviour
     bool isPitchNegRCSOn;
 
     public float height;
-    public float x_offset;
     public float z_offset;
-    public float angle;
+    public float pitch_init_angle;
     public float z_init_speed;
     public float TVCangle;
     public float rcs_thurst;
     public float engine_thrust;
+    public float x_offset = 15;
+    public float roll_init_angle = 5;
 
     void Start()
     {
@@ -40,35 +40,16 @@ public class RocketController : MonoBehaviour
         pd = GetComponent<PhysicDebugger>();
 
         rb.centerOfMass = centerOfMass;
-
-
-        height = 50;
-        x_offset = 4;
-        z_offset = 4;
-        angle = 90;
-        z_init_speed = 1;
-        TVCangle = 5.0f;
-        rcs_thurst = 2.5f;
-        engine_thrust = 5000;
     }
 
     void FixedUpdate()
     {
         if(toReset)
         {
-            
-            height = 550;
-            z_offset = 90;
-            angle = 90;
-            z_init_speed = 1;
-            TVCangle = 7.0f;
-            rcs_thurst = 0.1f;
-            engine_thrust = 9000;
-
-            rb.position = transform.parent.transform.TransformPoint(new Vector3(Random.Range(-15, 15), height, Random.Range(-z_offset, -z_offset)));
+            rb.position = transform.parent.transform.TransformPoint(new Vector3(Random.Range(-x_offset, x_offset), height, Random.Range(-z_offset, -z_offset)));
             rb.velocity = new Vector3(0, 0, z_init_speed);
 
-            rb.rotation = Quaternion.Euler(Random.Range(85, angle), 0, Random.Range(-5, 5));
+            rb.rotation = Quaternion.Euler(Random.Range(85, pitch_init_angle), 0, Random.Range(-roll_init_angle, roll_init_angle));
             rb.angularVelocity = Vector3.zero;
 
             isEngineOn = false;
@@ -93,7 +74,7 @@ public class RocketController : MonoBehaviour
 
         if (isEngineOn)
         {
-            Vector3 thrust = new Vector3(0, 2 * engine_thrust * Time.deltaTime, 0);
+            Vector3 thrust = new Vector3(0, engine_thrust * Time.deltaTime * 2, 0);
 
             Quaternion rotation = Quaternion.Euler(pitchTVC, 0, rollTVC);
             Vector3 vectored_thrust = rotation * thrust;
@@ -193,11 +174,7 @@ public class RocketController : MonoBehaviour
             }
         }
 
-        //pas ouf
-        //float alt = rb.position.y;
-        //Debug.Log((int) alt + "U |" + "predicted using vel" + (int) (alt - rb.velocity.y * Time.deltaTime) + "U |" + rb.velocity.magnitude + "U/s");
-
-        //super
+        //TODO: afficher vitesse en UI
         //float alt = 10*rb.position.y;
         //Debug.Log((int)alt + "m |" + "predicted using vel" + (int)(alt - rb.velocity.y * Time.deltaTime) + "m |" + rb.velocity.magnitude + "m/s");
     }
@@ -236,55 +213,23 @@ public class RocketController : MonoBehaviour
         return rb.angularVelocity;
     }
 
-    public float GetXRotation()
+    public float GetPitchRotation()
     {
         return Vector3.Dot(transform.up, Vector3.forward);
     }
 
-    public float GetYRotation()
+    public float GetUpsideDownRotation()
     {
         return Vector3.Dot(transform.up, Vector3.up);
     }
 
-    public float GetZRotation()
+    public float GetRollRotation()
     {
         return Vector3.Dot(transform.up, Vector3.right);
     }
 
     public void ModifyEngineState(int throttleConsigne, int rollTVCConsigne, int pitchTVCConsigne)
     {
-        /*
-        if(consigne == 1)
-        {
-            isEngineOn = true;
-        }
-        else
-        {
-            isEngineOn = false;
-        }
-        */
-
-        /*
-        if(consigne == 0)
-        {
-            isEngineOn = false;
-            TVC = 0;
-        }else if(consigne == 1)
-        {
-            isEngineOn = true;
-            TVC = 0;
-        }else if(consigne == 2)
-        {
-            isEngineOn = true;
-            TVC = -5;
-        }
-        else
-        {
-            isEngineOn = true;
-            TVC = 5;
-        }
-        */
-
         if(throttleConsigne == 0)
         {
             isEngineOn = false;
@@ -354,26 +299,4 @@ public class RocketController : MonoBehaviour
             isPitchNegRCSOn = false;
         }
     }
-
-    /*
-    public void ModifyPitchRCSState(int consigne)
-    {
-        if (consigne == 1)
-        {
-            isPitchPosRCSOn = true;
-            isPitchNegRCSOn = false;
-        }
-        else if (consigne == 2)
-        {
-            isPitchPosRCSOn = false;
-            isPitchNegRCSOn = true;
-        }
-        else
-        {
-            isRollPosRCSOn = false;
-            isPitchNegRCSOn = false;
-        }
-    }
-    */
-
 }

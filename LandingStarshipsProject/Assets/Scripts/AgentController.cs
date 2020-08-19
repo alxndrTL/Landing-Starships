@@ -10,9 +10,6 @@ public class AgentController : Agent
     public EnvironmentParameters m_ResetParams;
     private RocketController rc;
 
-    public GameObject mainCam;
-    public GameObject sideCam;
-
     void Start()
     {
         rc = GetComponent<RocketController>();
@@ -22,61 +19,25 @@ public class AgentController : Agent
     {
         m_ResetParams = Academy.Instance.EnvironmentParameters;
 
-        if (m_ResetParams.GetWithDefault("init_height", 50) != rc.height)
-        {
-            Debug.Log("NOUVELLE LECON, SUR LA HAUTEUR INITIALE. ANCIENNE VALEUR:" + rc.height + ", NOUVELLE VALEUR:" + m_ResetParams.GetWithDefault("init_height", 50));
-            rc.height = m_ResetParams.GetWithDefault("init_height", 50);
-        }
-
-        if (m_ResetParams.GetWithDefault("z_init_offset", 4) != rc.z_offset)
-        {
-            Debug.Log("NOUVELLE LECON, SUR LE XOFFSET INITIAL. ANCIENNE VALEUR:" + rc.z_offset + ", NOUVELLE VALEUR:" + m_ResetParams.GetWithDefault("z_init_offset", 4));
-            rc.z_offset = m_ResetParams.GetWithDefault("z_init_offset", 4);
-        }
-
-        if (m_ResetParams.GetWithDefault("pitch_init_angle", 0) != rc.angle)
-        {
-            Debug.Log("NOUVELLE LECON, SUR LE ANGLE INITIAL. ANCIENNE VALEUR:" + rc.angle + ", NOUVELLE VALEUR:" + m_ResetParams.GetWithDefault("pitch_init_angle", 0));
-            rc.angle = m_ResetParams.GetWithDefault("pitch_init_angle", 0);
-        }
-
-        if (m_ResetParams.GetWithDefault("z_init_speed", 0) != rc.z_init_speed)
-        {
-            Debug.Log("NOUVELLE LECON, SUR LE Z INIT SPEED. ANCIENNE VALEUR:" + rc.z_init_speed + ", NOUVELLE VALEUR:" + m_ResetParams.GetWithDefault("z_init_speed", 0));
-            rc.z_init_speed = m_ResetParams.GetWithDefault("z_init_speed", 0);
-        }
-
-        if (m_ResetParams.GetWithDefault("tvc_angle", 5) != rc.TVCangle)
-        {
-            Debug.Log("NOUVELLE LECON, SUR LE TVCANGLE. ANCIENNE VALEUR:" + rc.TVCangle + ", NOUVELLE VALEUR:" + m_ResetParams.GetWithDefault("tvc_angle", 5));
-            rc.TVCangle = m_ResetParams.GetWithDefault("tvc_angle", 5);
-        }
-
-        if (m_ResetParams.GetWithDefault("rcs_thrust", 2.5f) != rc.rcs_thurst)
-        {
-            Debug.Log("NOUVELLE LECON, SUR LE RCSTHRUST. ANCIENNE VALEUR:" + rc.rcs_thurst + ", NOUVELLE VALEUR:" + m_ResetParams.GetWithDefault("rcs_thrust", 2.5f));
-            rc.rcs_thurst = m_ResetParams.GetWithDefault("rcs_thrust", 2.5f);
-        }
-
-        if (m_ResetParams.GetWithDefault("engine_thrust", 5000) != rc.engine_thrust)
-        {
-            Debug.Log("NOUVELLE LECON, SUR LE RCSTHRUST. ANCIENNE VALEUR:" + rc.engine_thrust + ", NOUVELLE VALEUR:" + m_ResetParams.GetWithDefault("engine_thrust", 5000));
-            rc.engine_thrust = m_ResetParams.GetWithDefault("engine_thrust", 5000);
-        }
+        rc.height = m_ResetParams.GetWithDefault("init_height", 550);
+        rc.z_offset = m_ResetParams.GetWithDefault("z_init_offset", 90);
+        rc.pitch_init_angle = m_ResetParams.GetWithDefault("pitch_init_angle", 90);
+        rc.z_init_speed = m_ResetParams.GetWithDefault("z_init_speed", 1);
+        rc.TVCangle = m_ResetParams.GetWithDefault("tvc_angle", 7);
+        rc.rcs_thurst = m_ResetParams.GetWithDefault("rcs_thrust", 0.1f);
+        rc.engine_thrust = m_ResetParams.GetWithDefault("engine_thrust", 9000);
 
         rc.ResetPosition();
     }
 
     public override void CollectObservations(VectorSensor sensor)
     {
-        //TODO: addobservation direct en vecteur, et non pas composante par composante
-
         Vector3 rocketPosition = rc.GetPosition();
         Vector3 rocketVelocity = rc.GetVelocity();
         Vector3 rocketAngularVelocity = rc.GetAngularVelocity();
-        float rollIndicator = rc.GetZRotation();
-        float pitchIndicator = rc.GetXRotation();
-        float upsideDownIndicator = rc.GetYRotation();
+        float rollIndicator = rc.GetRollRotation();
+        float pitchIndicator = rc.GetPitchRotation();
+        float upsideDownIndicator = rc.GetUpsideDownRotation();
 
         sensor.AddObservation(rocketPosition.x);
         sensor.AddObservation(rocketPosition.y);
@@ -127,72 +88,65 @@ public class AgentController : Agent
     {
         // 0: MOTEUR (OFF/ON), 1: TVC ROLL (OFF, -5°, +5°), 2: TVC PITCH (OFF, -5°, +5°), 3: RCS ROLL (OFF, POS, NEG), 4 : RCS PITCH (OFF, POS, NEG)
 
-        actionsOut[0] = 0;
-
         if (Input.GetKey(KeyCode.Space))
         {
             actionsOut[0] = 1;
         }
-
-        actionsOut[1] = 0;
-        actionsOut[2] = 0;
-        actionsOut[3] = 0;
-        actionsOut[4] = 0;
-
-        if(mainCam.activeSelf)
+        else
         {
-            if (Input.GetKey(KeyCode.RightArrow))
-            {
-                actionsOut[3] = 1;
-            }
-            else if (Input.GetKey(KeyCode.LeftArrow))
-            {
-                actionsOut[3] = 2;
-            }
-            else
-            {
-                actionsOut[3] = 0;
-            }
+            actionsOut[0] = 0;
+        }
 
-            if (Input.GetKey(KeyCode.Q))
-            {
-                actionsOut[1] = 1;
-            }
-            else if (Input.GetKey(KeyCode.D))
-            {
-                actionsOut[1] = 2;
-            }
-            else
-            {
-                actionsOut[1] = 0;
-            }
-        }else
+        if (Input.GetKey(KeyCode.RightArrow))
         {
-            if (Input.GetKey(KeyCode.RightArrow))
-            {
-                actionsOut[4] = 2;
-            }
-            else if (Input.GetKey(KeyCode.LeftArrow))
-            {
-                actionsOut[4] = 1;
-            }
-            else
-            {
-                actionsOut[4] = 0;
-            }
+            actionsOut[3] = 1;
+        }
+        else if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            actionsOut[3] = 2;
+        }
+        else
+        {
+            actionsOut[3] = 0;
+        }
 
-            if (Input.GetKey(KeyCode.Q))
-            {
-                actionsOut[2] = 1;
-            }
-            else if (Input.GetKey(KeyCode.D))
-            {
-                actionsOut[2] = 2;
-            }
-            else
-            {
-                actionsOut[2] = 0;
-            }
+        if (Input.GetKey(KeyCode.Q))
+        {
+            actionsOut[1] = 1;
+        }
+        else if (Input.GetKey(KeyCode.D))
+        {
+            actionsOut[1] = 2;
+        }
+        else
+        {
+            actionsOut[1] = 0;
+        }
+
+        if (Input.GetKey(KeyCode.UpArrow))
+        {
+            actionsOut[4] = 2;
+        }
+        else if (Input.GetKey(KeyCode.DownArrow))
+        {
+            actionsOut[4] = 1;
+        }
+        else
+        {
+            actionsOut[4] = 0;
+        }
+
+        if (Input.GetKey(KeyCode.A))
+        {
+            actionsOut[2] = 1;
+        }
+        else if (Input.GetKey(KeyCode.E))
+        {
+            actionsOut[2] = 2;
+        }
+        else
+        {
+            actionsOut[2] = 0;
         }
     }
 }
