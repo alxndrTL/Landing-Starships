@@ -5,8 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(Animation))]
 public class AnimationController : MonoBehaviour
 {
-
     private Animation anim;
+    bool hasDeployed;
 
     void Start()
     {
@@ -15,6 +15,10 @@ public class AnimationController : MonoBehaviour
 
     public void PlayAnimation()
     {
-        anim.Play("LandingLegsDeploy");
+        if(!hasDeployed)
+        {
+            anim.Play("LandingLegsDeploy");
+            hasDeployed = true;
+        }   
     }
 }

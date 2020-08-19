@@ -15,6 +15,9 @@ public class RocketController : MonoBehaviour
     private PhysicDebugger pd;
     private TextController tc;
     private AnimationController anc;
+    private EngineParticleController epc;
+    private RCSParticleController rpc;
+    private EngineRCSAudioController erac;
 
     bool toReset;
     bool isEngineOn;
@@ -42,6 +45,9 @@ public class RocketController : MonoBehaviour
         pd = GetComponent<PhysicDebugger>();
         tc = GetComponent<TextController>();
         anc = GetComponent<AnimationController>();
+        epc = GetComponent<EngineParticleController>();
+        rpc = GetComponent<RCSParticleController>();
+        erac = GetComponent<EngineRCSAudioController>();
 
         rb.centerOfMass = centerOfMass;
     }
@@ -183,12 +189,16 @@ public class RocketController : MonoBehaviour
             }
         }
 
+        //Animations
         if(rb.position.y < 20)
         {
             anc.PlayAnimation();
         }
 
+        rpc.AnimateParticle(isRollPosRCSOn, isRollNegRCSOn, isPitchPosRCSOn, isPitchNegRCSOn);
+        epc.AnimateParticle(isEngineOn);
         tc.SetTelemetryText(10*rb.position.y-7, rb.velocity.magnitude);
+        erac.isEngineOn = isEngineOn;
     }
 
     void OnCollisionEnter(Collision collision)
