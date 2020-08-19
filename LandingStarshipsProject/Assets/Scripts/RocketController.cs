@@ -44,6 +44,11 @@ public class RocketController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if(ac.episodeFinished)
+        {
+            return;
+        }
+
         if(toReset)
         {
             rb.position = transform.parent.transform.TransformPoint(new Vector3(Random.Range(-x_offset, x_offset), height, Random.Range(-z_offset, -z_offset)));
@@ -181,7 +186,8 @@ public class RocketController : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.name == "AgentRocket")
+
+        if (collision.gameObject.name == "AgentRocket" || ac.episodeFinished)
         {
             return;
         }

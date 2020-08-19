@@ -10,6 +10,8 @@ public class AgentController : Agent
     public EnvironmentParameters m_ResetParams;
     private RocketController rc;
 
+    public bool episodeFinished;
+
     void Start()
     {
         rc = GetComponent<RocketController>();
@@ -27,6 +29,7 @@ public class AgentController : Agent
         rc.rcs_thurst = m_ResetParams.GetWithDefault("rcs_thrust", 0.1f);
         rc.engine_thrust = m_ResetParams.GetWithDefault("engine_thrust", 9000);
 
+        episodeFinished = false;
         rc.ResetPosition();
     }
 
@@ -81,6 +84,16 @@ public class AgentController : Agent
     public void EndEpisode(float reward)
     {
         AddReward(reward);
+
+        episodeFinished = true;
+        StartCoroutine(WaitCoroutine());
+    }
+
+    IEnumerator WaitCoroutine()
+    {
+        yield return new WaitForSeconds(10);
+        Debug.Log("Finished Coroutine");
+
         EndEpisode();
     }
 
