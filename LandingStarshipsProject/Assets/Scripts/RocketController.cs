@@ -13,6 +13,8 @@ public class RocketController : MonoBehaviour
     private Rigidbody rb;
     private AgentController ac;
     private PhysicDebugger pd;
+    private TextController tc;
+    private AnimationController anc;
 
     bool toReset;
     bool isEngineOn;
@@ -38,6 +40,8 @@ public class RocketController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         ac = GetComponent<AgentController>();
         pd = GetComponent<PhysicDebugger>();
+        tc = GetComponent<TextController>();
+        anc = GetComponent<AnimationController>();
 
         rb.centerOfMass = centerOfMass;
     }
@@ -179,9 +183,12 @@ public class RocketController : MonoBehaviour
             }
         }
 
-        //TODO: afficher vitesse en UI
-        //float alt = 10*rb.position.y;
-        //Debug.Log((int)alt + "m |" + "predicted using vel" + (int)(alt - rb.velocity.y * Time.deltaTime) + "m |" + rb.velocity.magnitude + "m/s");
+        if(rb.position.y < 20)
+        {
+            anc.PlayAnimation();
+        }
+
+        tc.SetTelemetryText(10*rb.position.y-7, rb.velocity.magnitude);
     }
 
     void OnCollisionEnter(Collision collision)

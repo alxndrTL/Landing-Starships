@@ -13,11 +13,8 @@ public class AnimationController : MonoBehaviour
         anim = GetComponent<Animation>();
     }
 
-    void Update()
+    public void PlayAnimation()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            anim.Play("LandingLegsDeploy");
-        }
+        anim.Play("LandingLegsDeploy");
     }
 }

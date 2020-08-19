@@ -2456,6 +2456,7 @@ GameObject:
   - component: {fileID: 2957465268776096332}
   - component: {fileID: 2957465268776096335}
   - component: {fileID: 6236218752976492691}
+  - component: {fileID: 1121986522283252010}
   m_Layer: 0
   m_Name: AgentRocket
   m_TagString: Untagged
@@ -2550,7 +2551,8 @@ MonoBehaviour:
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
-  MaxStep: 1000
+  MaxStep: 0
+  episodeFinished: 0
 --- !u!114 &2957465268776096328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2652,3 +2654,16 @@ MonoBehaviour:
   Record: 0
   DemonstrationName: Demo3D
   DemonstrationDirectory: 
+--- !u!114 &1121986522283252010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9094820073056752346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1172c52348d23d1419a345e13226766a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  telemetryText: {fileID: 0}

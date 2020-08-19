@@ -92,8 +92,6 @@ public class AgentController : Agent
     IEnumerator WaitCoroutine()
     {
         yield return new WaitForSeconds(10);
-        Debug.Log("Finished Coroutine");
-
         EndEpisode();
     }
 
