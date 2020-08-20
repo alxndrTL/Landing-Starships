@@ -7,8 +7,9 @@ using UnityEngine;
 [RequireComponent(typeof(PhysicDebugger))]
 public class RocketController : MonoBehaviour
 {
-    public TVCAnimationController tvcac;
-    public ColorizePlane colorizePlane;
+    public TVCAnimationController tvcac_engine_1;
+    public TVCAnimationController tvcac_engine_2;
+    public TVCAnimationController tvcac_engine_3;
     public Vector3 centerOfMass;
 
     private Rigidbody rb;
@@ -176,7 +177,6 @@ public class RocketController : MonoBehaviour
 
         if (rb.position.y > height + 50 || rb.position.y < -1 || Mathf.Abs(transform.parent.transform.InverseTransformPoint(rb.position).x) > 30 || Mathf.Abs(transform.parent.transform.InverseTransformPoint(rb.position).z) > 100)
         {
-            colorizePlane.Colorize(Color.red);
             ac.EndEpisode(0);
         }
 
@@ -184,12 +184,10 @@ public class RocketController : MonoBehaviour
         {
             if (Mathf.Abs(Vector3.Dot(transform.up, Vector3.right)) < 0.1 && Mathf.Abs(Vector3.Dot(transform.up, Vector3.forward)) < 0.1 && Vector3.Dot(transform.up, Vector3.up) > 0.9)
             {
-                colorizePlane.Colorize(Color.green);
                 ac.EndEpisode(1);
             }
             else
             {
-                colorizePlane.Colorize(Color.red);
                 ac.EndEpisode(0);
             }
         }
@@ -205,7 +203,9 @@ public class RocketController : MonoBehaviour
         tc.SetTelemetryText(10*rb.position.y-7, rb.velocity.magnitude);
         lspc.UpdateLandingSmoke(10*rb.position.y-7, isEngineOn);
         erac.isEngineOn = isEngineOn;
-        tvcac.UpdateTVCAnimation(rollTVC, pitchTVC);
+        tvcac_engine_1.UpdateTVCAnimation(rollTVC, pitchTVC);
+        tvcac_engine_2.UpdateTVCAnimation(rollTVC, pitchTVC);
+        tvcac_engine_3.UpdateTVCAnimation(rollTVC, pitchTVC);
     }
 
     void OnCollisionEnter(Collision collision)
@@ -218,7 +218,6 @@ public class RocketController : MonoBehaviour
 
         if (collision.relativeVelocity.y > 5)
         {
-            colorizePlane.Colorize(Color.red);
             ac.EndEpisode(0);
         }
     }
