@@ -7,6 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(PhysicDebugger))]
 public class RocketController : MonoBehaviour
 {
+    public TVCAnimationController tvcac;
     public ColorizePlane colorizePlane;
     public Vector3 centerOfMass;
 
@@ -17,6 +18,7 @@ public class RocketController : MonoBehaviour
     private AnimationController anc;
     private EngineParticleController epc;
     private RCSParticleController rpc;
+    private LandingSmokeParticleController lspc;
     private EngineRCSAudioController erac;
 
     bool toReset;
@@ -47,6 +49,7 @@ public class RocketController : MonoBehaviour
         anc = GetComponent<AnimationController>();
         epc = GetComponent<EngineParticleController>();
         rpc = GetComponent<RCSParticleController>();
+        lspc = GetComponent<LandingSmokeParticleController>();
         erac = GetComponent<EngineRCSAudioController>();
 
         rb.centerOfMass = centerOfMass;
@@ -74,6 +77,8 @@ public class RocketController : MonoBehaviour
             isRollNegRCSOn = false;
             isPitchPosRCSOn = false;
             isPitchNegRCSOn = false;
+
+            anc.ResetAnimation();
 
             toReset = false;
             return;
@@ -190,7 +195,7 @@ public class RocketController : MonoBehaviour
         }
 
         //Animations
-        if(rb.position.y < 20)
+        if(rb.position.y < 20 && rb.velocity.magnitude > 0.1)
         {
             anc.PlayAnimation();
         }
@@ -198,7 +203,9 @@ public class RocketController : MonoBehaviour
         rpc.AnimateParticle(isRollPosRCSOn, isRollNegRCSOn, isPitchPosRCSOn, isPitchNegRCSOn);
         epc.AnimateParticle(isEngineOn);
         tc.SetTelemetryText(10*rb.position.y-7, rb.velocity.magnitude);
+        lspc.UpdateLandingSmoke(10*rb.position.y-7, isEngineOn);
         erac.isEngineOn = isEngineOn;
+        tvcac.UpdateTVCAnimation(rollTVC, pitchTVC);
     }
 
     void OnCollisionEnter(Collision collision)

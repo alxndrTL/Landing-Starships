@@ -17,8 +17,16 @@ public class AnimationController : MonoBehaviour
     {
         if(!hasDeployed)
         {
+            anim["LandingLegsDeploy"].speed = 1;
             anim.Play("LandingLegsDeploy");
             hasDeployed = true;
         }   
+    }
+
+    public void ResetAnimation()
+    {
+        anim["LandingLegsDeploy"].speed = -1;
+        anim.Play("LandingLegsDeploy");
+        hasDeployed = false;
     }
 }

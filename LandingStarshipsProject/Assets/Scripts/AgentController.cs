@@ -91,7 +91,7 @@ public class AgentController : Agent
 
     IEnumerator WaitCoroutine()
     {
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(4);
         EndEpisode();
     }
 
