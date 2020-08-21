@@ -8,6 +8,8 @@ This project uses artificial intelligence algorithms, and more precisely deep re
 
 Starship is a fully reusable launch vehicle which is currently being developed by SpaceX. Starship refers to two things : the rocket as a whole (ie. the first stage, named Super Heavy, and the second stage) as well as the second stage itself. In this project, Starship refers to the second stage. This whole next-gen rocket, with its crazy diameter of 9 meters, will be capable of delivering more than 100 tons to Low Earth Orbit, while having a reusable first and second stage. Starships are currently being built in Boca Chica Village, Texas, and, maybe one day, will bring humans to Mars.
 
+If you want daily updates about the development of Starship, I highly suggest you to follow NASASpaceflight on [Youtube](https://www.youtube.com/channel/UCSUu1lih2RifWkKtDOJdsBA) and [Twitter](https://twitter.com/NASASpaceflight) as well as take a look at [LabPadre's livestream of the Boca Chica site](https://www.youtube.com/watch?v=5QbM7Vsz3kg).
+
 The second stage of the rocket, Starship, will perform a special reentry profile to slow down enough as shown below (it will be coming from orbit so will have a high speed w.r.t the air surrounding it) : it will keep a high Angle Of Attack (60°) during its descent  and then will fall like a sky diver, belly first. A few seconds before touchdown, it will executes a maneuver to bring it from belly flop to tail down to actually land vertical, on its landing legs.
 
 <p align="center">
@@ -25,7 +27,23 @@ This learning is done, in this case, using the [PPO](https://openai.com/blog/ope
 
 [GIF RAPIDE DU LEARNING VISIBLE]
 
-## Discussion and Technical Details
+
+
+## How to reproduce this ?
+
+- ### Installation details
+
+
+
+
+
+- ### Where to learn RL
+
+If you're willing to learn more about RL, here are some guidance and resources for you to start with.
+
+
+
+### Discussion and Technical Details
 
 - ### About the physical simulation and the landing
 
