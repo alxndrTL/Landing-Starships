@@ -1,6 +1,6 @@
 ## Using Reinforcement Learning 🤖 to make rockets land 🚀
 
-This project uses artificial intelligence algorithms, and more precisely deep reinforcement learning algorithms, to make an agent learn by itself how to land an orbital class rocket, Starship. The agent is the algorithm which can observe the environment and choose actions to sucessfully land the rocket. Before the so-called "training", the agent just got initialized and basically chooses actions at random. However, as the training continues, the agent gets reward for doing the task we want it to do: landing the rocket. Based on this reward and how he got it, the agent will update the parameters of its neural network in order to make the actions that led to this reward more probable.
+This project uses artificial intelligence algorithms, and more precisely deep reinforcement learning algorithms, to make an agent learn by itself how to land an orbital class rocket, Starship. The agent is the algorithm which can observe the environment and choose actions to successfully land the rocket. Before the so-called "training", the agent just got initialized and basically chooses actions at random. However, as the training continues, the agent gets reward for doing the task we want it to do: landing the rocket. Based on this reward and how he got it, the agent will update the parameters of its neural network in order to make the actions that led to this reward more probable.
 
 [GIF LANDING DU PROJECT]
 
@@ -33,17 +33,27 @@ This learning is done, in this case, using the [PPO](https://openai.com/blog/ope
 
 - ### Installation details
 
+The Unity project of this experiment is located inside the LandingStarshipsProject folder of the repo.
 
+For you to run the model and see the rockets land in action, you have to install Unity ML-Agents toolkit on your machine. [Link to the installation ](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Installation.md) (it should take a few minutes)
 
+If you want to train the model (from scratch or using the pre-trained model, the RocketLanding.nn file), you also need to install the Unity ML-Agents toolkit. You can then follow [this guide](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Training-ML-Agents.md) to start your training. The doc is really useful. Note also that I would suggest you to use the SN20 Unity project to train, as the LandingStarshipsProject Unity project is really made to create videos and cool clips (it has a map, particle effects, animations...).
 
+Of course, you can message me if you have trouble with that, or if you have a question. I'm more likely to respond on [Twitter](https://twitter.com/AlexandreTL2).
 
 - ### Where to learn RL
 
 If you're willing to learn more about RL, here are some guidance and resources for you to start with.
 
+To experiment with Deep RL, you could technically go straight to the implementation, avoid the theory and still get some results. But of course, learning the theory first is essential if you want to understand (or should I say have a better intuition) your RL algorithm. So first, for the RL side, I would highly suggest you to start with [Reinforcement Learning : An Introduction, by Sutton & Barto](http://www.incompleteideas.net/book/the-book-2nd.html), which covers the basics concepts of RL. Also, if you're more into learning by videos, then [David Silver's series of video on Youtube](https://www.youtube.com/playlist?list=PLqYmG7hTraZDM-OYHWgPebj2MfCFzFObQ) essentially covers the same stuff as in the book.
+
+Now, RL is really great but to implement it on "real-worldish" problems usually requires using deep learning ie. deep neural networks. This is called Deep RL. Learning Deep RL if you know RL isn't hard, though you need to know about supervised learning (things like gradient descent, neural network basics, backprop...). Then, I would say that you can go with the [OpenAI Spinning up in Deep RL](https://spinningup.openai.com/en/latest/), as well as the [Deep RL Bootcamp](https://sites.google.com/view/deep-rl-bootcamp/lectures) organized by UC Berkeley.
+
+**If you're French**, or if you're at ease with the French language, I'm currently posting [a course on Youtube about all that stuff](https://www.youtube.com/playlist?list=PLO5NqTx3Y6W45lAObwpMGF_rcH02HLf4I) : standard RL, basic supervised learning concepts and Deep RL. At this date, I've mostly covered (not finished yet but soon) the whole standard RL part. I would highly advise you to take a look at it ! [Link to the course](https://www.youtube.com/playlist?list=PLO5NqTx3Y6W45lAObwpMGF_rcH02HLf4I)
 
 
-### Discussion and Technical Details
+
+## Discussion and Technical Details
 
 - ### About the physical simulation and the landing
 
@@ -100,7 +110,7 @@ If you're willing to learn more about RL, here are some guidance and resources f
     <img src="https://leimao.github.io/images/article/2017-05-04-REINFORCE-Policy-Gradient/lunarlander.png" width=700/>
   </p>
 
-  ​	I have found a work similar to what I've done in Unity, this time landing the Falcon 9's first stage. The work is done by [u/SwissArmyApple](https://www.reddit.com/user/SwissArmyApple/). He also uses PPO as the training algorithm.
+  ​	I have found a work similar to what I've done in Unity, this time landing the Falcon 9's first stage. The work is done by [u/SwissArmyApple](https://www.reddit.com/user/SwissArmyApple/). He also uses PPO as the training algorithm, and told me that he used a dense reward function.
 
   
 
