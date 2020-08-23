@@ -114,7 +114,7 @@ Now, RL is really great but to implement it on "real-worldish" problems usually 
 
 ## Results
 
-​	The total number of parameters in the neural network is about 40k. The algorithm trained for a total of about 200 millions timesteps, which, on my (Intel i7 processor) machine, took about 20 hours. A trained agent has a mean reward of about 0.98, meaning that after training, the agent lands Starship successfully 98% of the time. I could have stopped training way before 20 hours and still get good performance (>95%) but of course, that performance, even the 98% one, isn't acceptable for practical use. With more training and good hyperparameters tuning, I do believe that performance could go higher but again, the "black box" effect makes the practical use of RL critical for this task.
+​	The total number of parameters in the neural network is about 40k. The algorithm trained for a total of about 200 millions timesteps, which, on my (Intel i7 processor) machine, took about 20 hours. A trained agent has a mean reward of about 0.98, meaning that after training, the agent lands Starship successfully 99% of the time. I could have stopped training way before 20 hours and still get good performance (>95%) but of course, that performance, even the 99% one, isn't acceptable for practical use. With more training and good hyperparameters tuning, I do believe that performance could go way higher but again, the "black box" effect makes the practical use of RL critical for this task.
 
 [PHOTO PERFS?]
 
