@@ -109,7 +109,9 @@ If you're willing to learn more about RL, here are some guidance and resources f
 
   ​		Also, the engine sound as well as the RCS sound you can hear on the demo is procedurally generated. Thanks to [Joe Strout](https://www.gamasutra.com/blogs/author/JoeStrout/1001725/) for sharing this "library".
 
-  [GIF ALTERNANCE ENTRE VRAIES PHOTOS BC ET RENDERS]
+<p align="center">
+  <img src="https://github.com/Procuste34/Landing-Starships/blob/master/images/real_render.png" width=500/>
+</p>
 
 ## Results
 
