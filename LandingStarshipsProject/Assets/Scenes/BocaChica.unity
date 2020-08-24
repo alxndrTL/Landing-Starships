@@ -35403,8 +35403,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1342304650}
-  m_LocalRotation: {x: 0.028780758, y: 0.052988056, z: -0.0015278184, w: 0.99817914}
-  m_LocalPosition: {x: -28.398092, y: 12.174154, z: -270.8565}
+  m_LocalRotation: {x: -0, y: 0.7509761, z: -0.66032946, w: 0}
+  m_LocalPosition: {x: 0.40190747, y: 0.5041542, z: -0.92649686}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1691680036}
@@ -40671,7 +40671,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1522916914}
-  m_LocalRotation: {x: 0.028780758, y: 0.052988056, z: -0.0015278184, w: 0.99817914}
+  m_LocalRotation: {x: 0.028780738, y: 0.05298809, z: -0.0015278183, w: 0.99817914}
   m_LocalPosition: {x: -28.398092, y: 12.174154, z: -270.8565}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -40751,18 +40751,26 @@ PlayableDirector:
     value: {fileID: 0}
   m_ExposedReferences:
     m_References:
+    - d16f8db852e143e49aa52c4f72551585: {fileID: 814532556}
     - 4be651aac3c22fa4bad2ae7c6298b0f8: {fileID: 1399786704}
     - 027d0e7f52cf9a4419892296c92cd61c: {fileID: 0}
+    - 89c09c8b6f7b2134bb237453a47d44e2: {fileID: 715935147}
+    - 033a4a12311c4f0498500e3a5979d768: {fileID: 814532556}
     - 907c59cf93b4dc44b880cb3607435d6e: {fileID: 0}
     - 07b4323cc2366b9429e7e37ae30dbaca: {fileID: 814532556}
+    - b0270e1405c65ff4e940ce735ec994f4: {fileID: 1399786704}
     - 1020e39fae5ebf04e8026378dc1fac36: {fileID: 1399786704}
+    - be28f2c646f09274782cc8f9a55e0198: {fileID: 1399786704}
     - 5479b9529de3acc41b5b8ed18c22ff00: {fileID: 715935147}
     - b6fea11d8ada2d54fa5acb54ba48a5c9: {fileID: 605597108}
     - b0062c5bb2c31904481237bdc06bfcee: {fileID: 0}
-    - 8e4b92b0ec5bb4140a0e0f07c6a0bf8e: {fileID: 1075911423}
+    - 8e4b92b0ec5bb4140a0e0f07c6a0bf8e: {fileID: 814532556}
+    - 1fa0d7d416376cb46be71cdc794236bc: {fileID: 1399786704}
     - 51fa94d337f83b04da3ab4561ecf112f: {fileID: 814532556}
+    - 927c850bf2ec9a54e8fa46fa57d307c6: {fileID: 715935147}
     - 848180cceb75b7c4fa66f1b3de8a5143: {fileID: 0}
     - 258ffb6d598475847a51110ebf24e105: {fileID: 0}
+    - ceaf3658ffd48e74eb93e7a8d2e0a759: {fileID: 333942490}
     - 79426042001bf8940b1468b5ac8f1d8e: {fileID: 814532556}
 --- !u!4 &1587022938
 Transform:
@@ -56270,14 +56278,15 @@ MonoBehaviour:
   tvcac_engine_3: {fileID: 1395269635}
   centerOfMass: {x: 0, y: 1, z: 0}
   height: 0
-  z_offset: 0
-  pitch_init_angle: 0
-  z_init_speed: 0
-  TVCangle: 0
-  rcs_thurst: 0
-  engine_thrust: 0
-  x_offset: 0
-  roll_init_angle: 5
+  init_angle_roll: 0
+  init_angle_pitch: 0
+  init_xoffset: 0
+  init_zoffset: 0
+  init_zspeed: 0
+  angle_tvc: 0
+  thrust_engine: 0
+  thrust_rcs: 0
+  collision_speed: 0
 --- !u!114 &1729663151000977747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56296,7 +56305,7 @@ MonoBehaviour:
     VectorActionSize: 0200000003000000030000000300000003000000
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
-  m_Model: {fileID: 5022602860645237092, guid: 80aa18a848116f84caf92cea7a7c36de, type: 3}
+  m_Model: {fileID: 5022602860645237092, guid: 4946a4ca3613f3741a1a926aaa1c9728, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: RocketLanding
@@ -66374,7 +66383,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4144152678049882145}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.1, y: 0.31, z: -215.32}
+  m_LocalPosition: {x: -12.58, y: 0.31, z: -212.9}
   m_LocalScale: {x: 9.473504, y: 9.473504, z: 9.473504}
   m_Children:
   - {fileID: 5746262101674944331}
@@ -92225,7 +92234,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7100197022879765878
 Transform:
   m_ObjectHideFlags: 0
