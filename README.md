@@ -80,7 +80,7 @@ If you're willing to learn more about RL, here are some guidance and resources f
 
   ​		In order to get agent that are able to generalize well to different conditions, random initialization was used intensely during all the training. This had the positive of effect of making the agents more robust to variations in changes of initial condition. A direct effect of this could be observed during the training, where the altitude was incrementally increased (from 500m to 5km). At each increase (eg. from 900m to 1.5km), I could observe that the performance of the agent didn't drop by very much (less than expected considering the fact that the spawning altitude was considerably changed).
 
-  ​		Practically, the project is made in Unity, which has a nice toolkit called [Unity ML Agents](https://github.com/Unity-Technologies/ml-agents), which makes it possible to interact with an agent in Unity from Python. That is very useful as Python is a very famous language for ML and RL. Also, it supports parallel training of multiple agents in a single environment, which speeds up considerably the training. That's why you can see 32 Starships landing next to each other.
+  ​		Practically, the project is made in Unity, which has a nice toolkit called [Unity ML Agents](https://github.com/Unity-Technologies/ml-agents), which makes it possible to interact with an agent in Unity from Python. That is very useful as Python is a very famous language for ML and RL. Also, it supports parallel training of multiple agents in a single environment, which speeds up considerably the training. That's why you can see 32 Starships landing next to each other. The algorithm used, PPO, was a plain out-of-the-box algorithm, I didn't tweak it to match perfectly what I wanted to do. That is something that's worth pointing out. More on that in the Results section.
 
 [GIF LANDINGS]  
 
@@ -126,4 +126,6 @@ If you're willing to learn more about RL, here are some guidance and resources f
 ​		Before testing curriculum learning and imitation learning as exploration strategies, I tried implementing an ICM - Intrinsic Curiosity Module - which creates some kind of intrinsic curiosity that encourages the agent to explore the environment. However, ICM didn't show great results.
 
 ​		Concerning hyperparameters, I used a three-layers neural network (2 hidden layers of 128 units), a learning rate of 3.0E-4 and a batch size of 64 (and then increased it later at 128). For more information, please see the configuration files.
+
+​		The algorithm used was used "as is" and didn't get tweaked. Also, the hyperparameters were almost the default ones, and I didn't really got the modify them to get results in the first place. This is something very important as this shows the ease of use of PPO. However, more hyperparameters-tuning was required (and still is) to make the learning more stable. 
 
