@@ -31,18 +31,6 @@ public class RocketController : MonoBehaviour
     bool isPitchPosRCSOn;
     bool isPitchNegRCSOn;
 
-    /*
-    public float height;
-    public float z_offset;
-    public float pitch_init_angle;
-    public float z_init_speed;
-    public float TVCangle;
-    public float rcs_thurst;
-    public float engine_thrust;
-    public float x_offset = 15;
-    public float roll_init_angle = 5;
-    */
-
     public float height;
     public float init_angle_roll;
     public float init_angle_pitch;
