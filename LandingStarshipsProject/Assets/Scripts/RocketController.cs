@@ -31,6 +31,7 @@ public class RocketController : MonoBehaviour
     bool isPitchPosRCSOn;
     bool isPitchNegRCSOn;
 
+    /*
     public float height;
     public float z_offset;
     public float pitch_init_angle;
@@ -40,6 +41,18 @@ public class RocketController : MonoBehaviour
     public float engine_thrust;
     public float x_offset = 15;
     public float roll_init_angle = 5;
+    */
+
+    public float height;
+    public float init_angle_roll;
+    public float init_angle_pitch;
+    public float init_xoffset;
+    public float init_zoffset;
+    public float init_zspeed;
+    public float angle_tvc;
+    public float thrust_engine;
+    public float thrust_rcs;
+    public float collision_speed;
 
     void Start()
     {
@@ -65,10 +78,10 @@ public class RocketController : MonoBehaviour
 
         if(toReset)
         {
-            rb.position = transform.parent.transform.TransformPoint(new Vector3(Random.Range(-x_offset, x_offset), height, Random.Range(-z_offset, -z_offset)));
-            rb.velocity = new Vector3(0, 0, z_init_speed);
+            rb.position = transform.parent.transform.TransformPoint(new Vector3(Random.Range(-init_xoffset, init_xoffset), height, Random.Range(-init_zoffset, -init_zoffset)));
+            rb.velocity = new Vector3(0, 0, init_zspeed);
 
-            rb.rotation = Quaternion.Euler(Random.Range(85, pitch_init_angle), 0, Random.Range(-roll_init_angle, roll_init_angle));
+            rb.rotation = Quaternion.Euler(Random.Range(85, init_angle_pitch), 0, Random.Range(-init_angle_roll, init_angle_roll));
             rb.angularVelocity = Vector3.zero;
 
             isEngineOn = false;
@@ -95,7 +108,7 @@ public class RocketController : MonoBehaviour
 
         if (isEngineOn)
         {
-            Vector3 thrust = new Vector3(0, engine_thrust * Time.deltaTime * 2, 0);
+            Vector3 thrust = new Vector3(0, thrust_engine * Time.deltaTime * 2, 0);
 
             Quaternion rotation = Quaternion.Euler(pitchTVC, 0, rollTVC);
             Vector3 vectored_thrust = rotation * thrust;
@@ -104,12 +117,12 @@ public class RocketController : MonoBehaviour
             Vector3 worldPoint = transform.TransformPoint(new Vector3(0, -1, 0));
 
             rb.AddForceAtPosition(worldForce, worldPoint, ForceMode.Force);
-            pd.DrawEngineRays(worldForce, worldPoint, engine_thrust / 1000);
+            pd.DrawEngineRays(worldForce, worldPoint, thrust_engine / 1000);
         }
 
         if(isRollPosRCSOn)
         {
-            Vector3 thrust_left = new Vector3(rcs_thurst, 0, 0);
+            Vector3 thrust_left = new Vector3(thrust_rcs, 0, 0);
 
             Vector3 worldForce_left_1 = transform.TransformVector(thrust_left);
             Vector3 worldForce_left_2 = transform.TransformVector(thrust_left);
@@ -126,7 +139,7 @@ public class RocketController : MonoBehaviour
 
         if(isRollNegRCSOn)
         {
-            Vector3 thrust_right = new Vector3(-rcs_thurst, 0, 0);
+            Vector3 thrust_right = new Vector3(-thrust_rcs, 0, 0);
 
             Vector3 worldForce_right_1 = transform.TransformVector(thrust_right);
             Vector3 worldForce_right_2 = transform.TransformVector(thrust_right);
@@ -143,7 +156,7 @@ public class RocketController : MonoBehaviour
 
         if (isPitchPosRCSOn)
         {
-            Vector3 thrust_left = new Vector3(0, 0, rcs_thurst);
+            Vector3 thrust_left = new Vector3(0, 0, thrust_rcs);
 
             Vector3 worldForce_left_1 = transform.TransformVector(thrust_left);
             Vector3 worldForce_left_2 = transform.TransformVector(thrust_left);
@@ -160,7 +173,7 @@ public class RocketController : MonoBehaviour
 
         if (isPitchNegRCSOn)
         {
-            Vector3 thrust_right = new Vector3(0, 0, -rcs_thurst);
+            Vector3 thrust_right = new Vector3(0, 0, -thrust_rcs);
 
             Vector3 worldForce_right_1 = transform.TransformVector(thrust_right);
             Vector3 worldForce_right_2 = transform.TransformVector(thrust_right);
@@ -216,7 +229,7 @@ public class RocketController : MonoBehaviour
             return;
         }
 
-        if (collision.relativeVelocity.y > 5)
+        if (collision.relativeVelocity.y > collision_speed)
         {
             ac.EndEpisode(0);
         }
@@ -273,10 +286,10 @@ public class RocketController : MonoBehaviour
                 rollTVC = 0;
             }else if(rollTVCConsigne == 1)
             {
-                rollTVC = -TVCangle;
+                rollTVC = -angle_tvc;
             }else if(rollTVCConsigne == 2)
             {
-                rollTVC = +TVCangle;
+                rollTVC = angle_tvc;
             }
 
             if(pitchTVCConsigne == 0)
@@ -284,10 +297,10 @@ public class RocketController : MonoBehaviour
                 pitchTVC = 0;
             }else if(pitchTVCConsigne == 1)
             {
-                pitchTVC = -TVCangle;
+                pitchTVC = -angle_tvc;
             }else if(pitchTVCConsigne == 2)
             {
-                pitchTVC = TVCangle;
+                pitchTVC = angle_tvc;
             }
         }
     }

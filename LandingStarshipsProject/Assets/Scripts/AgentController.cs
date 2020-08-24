@@ -21,6 +21,7 @@ public class AgentController : Agent
     {
         m_ResetParams = Academy.Instance.EnvironmentParameters;
 
+        /*
         rc.height = m_ResetParams.GetWithDefault("init_height", 550);
         rc.z_offset = m_ResetParams.GetWithDefault("z_init_offset", 90);
         rc.pitch_init_angle = m_ResetParams.GetWithDefault("pitch_init_angle", 90);
@@ -28,6 +29,18 @@ public class AgentController : Agent
         rc.TVCangle = m_ResetParams.GetWithDefault("tvc_angle", 7);
         rc.rcs_thurst = m_ResetParams.GetWithDefault("rcs_thrust", 0.1f);
         rc.engine_thrust = m_ResetParams.GetWithDefault("engine_thrust", 9000);
+        */
+
+        rc.height = m_ResetParams.GetWithDefault("init_height", 550);
+        rc.init_angle_roll = m_ResetParams.GetWithDefault("init_angle_roll", 5);
+        rc.init_angle_pitch = m_ResetParams.GetWithDefault("init_angle_pitch", 90);
+        rc.init_xoffset = m_ResetParams.GetWithDefault("init_xoffset", 15);
+        rc.init_zoffset = m_ResetParams.GetWithDefault("init_zoffset", 90);
+        rc.init_zspeed = m_ResetParams.GetWithDefault("init_zspeed", 1);
+        rc.angle_tvc = m_ResetParams.GetWithDefault("angle_tvc", 7);
+        rc.thrust_engine = m_ResetParams.GetWithDefault("thrust_engine", 5000);
+        rc.thrust_rcs = m_ResetParams.GetWithDefault("thrust_rcs", 0.2f);
+        rc.collision_speed = m_ResetParams.GetWithDefault("collision_speed", 5);
 
         episodeFinished = false;
         rc.ResetPosition();
