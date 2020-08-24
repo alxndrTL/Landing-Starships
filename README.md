@@ -115,7 +115,7 @@ If you're willing to learn more about RL, here are some guidance and resources f
 
 ## Results
 
-​		The total number of parameters in the neural network is about 40k. The algorithm trained for a total of about 200 millions timesteps, which, on my (Intel i7 processor) machine, took about 20 hours. A trained agent has a mean reward of about 0.99, meaning that after training, the agent lands Starship successfully ~99% of the time. I could have stopped training way before 20 hours and still get good performance (>95%) but of course, that performance, even the 99% one, isn't acceptable for practical use. With more training and good hyperparameters tuning, I do believe that performance could go way higher but again, the "black box" effect makes the practical use of RL critical for this task.
+​		The total number of parameters in the neural network is about 40k. The algorithm trained for a total of about 200 millions timesteps, which, on my (Intel i7 processor) machine, took about 20 hours. A trained agent has a mean reward of about 0.98, meaning that after training, the agent lands Starship successfully ~98% of the time. I could have stopped training way before 20 hours and still get good performance (>95%) but of course, that performance, even the 98% one, isn't acceptable for practical use. With more training and good hyperparameter tuning, I do believe that performance could go way higher but again, the "black box" effect makes the practical use of RL critical for this task.
 
 [PHOTO PERFS?]
 
@@ -127,5 +127,5 @@ If you're willing to learn more about RL, here are some guidance and resources f
 
 ​		Concerning hyperparameters, I used a three-layers neural network (2 hidden layers of 128 units), a learning rate of 3.0E-4 and a batch size of 64 (and then increased it later at 128). For more information, please see the configuration files.
 
-​		The algorithm used was used "as is" and didn't get tweaked. Also, the hyperparameters were almost the default ones, and I didn't really got the modify them to get results in the first place. This is something very important as this shows the ease of use of PPO. However, more hyperparameters-tuning was required (and still is) to make the learning more stable. 
+​		The algorithm used was used "as is" and didn't get tweaked. Also, the hyperparameters were almost the default ones, and I didn't really got the modify them to get results in the first place. This is something very important as this shows the ease of use of PPO. However, more hyperparameter tuning was required (and still is) to make the learning more stable. 
 
