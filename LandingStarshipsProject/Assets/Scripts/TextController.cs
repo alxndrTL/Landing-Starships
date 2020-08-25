@@ -7,6 +7,9 @@ public class TextController : MonoBehaviour
 
     public void SetTelemetryText(float altitude, float speed)
     {
-        telemetryText.text = (int)altitude + "m | " + (int)speed + "m/s";
+        if(telemetryText)
+        {
+            telemetryText.text = (int)altitude + "m | " + (int)speed + "m/s";
+        }
     }
 }

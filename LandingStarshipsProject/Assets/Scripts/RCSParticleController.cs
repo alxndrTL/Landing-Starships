@@ -25,7 +25,7 @@ public class RCSParticleController : MonoBehaviour
         if(isRollNegRCSOn)
         {
             RCS_ROLL_NEG_1.Play();
-            RCS_ROLL_NEG_1.Play();
+            RCS_ROLL_NEG_2.Play();
         }
         
         if(isPitchPosRCSOn)

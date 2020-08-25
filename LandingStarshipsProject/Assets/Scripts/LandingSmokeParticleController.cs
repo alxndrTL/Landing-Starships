@@ -8,15 +8,18 @@ public class LandingSmokeParticleController : MonoBehaviour
 
     public void UpdateLandingSmoke(float altitude, bool isEngineOn)
     {
-        if(altitude < 400)
+        if(LANDING_SMOKE)
         {
-            if(isEngineOn)
+            if (altitude < 400)
             {
-                var em = LANDING_SMOKE.emission;
-                em.rateOverTime = (-2.5f * altitude + 1000);
+                if (isEngineOn)
+                {
+                    var em = LANDING_SMOKE.emission;
+                    em.rateOverTime = (-2.5f * altitude + 1000);
 
-                LANDING_SMOKE.Play();
+                    LANDING_SMOKE.Play();
+                }
             }
-        } 
+        }
     }
 }

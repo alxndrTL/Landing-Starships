@@ -7,6 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(PhysicDebugger))]
 public class RocketController : MonoBehaviour
 {
+    public ColorizePlane cp;
     public TVCAnimationController tvcac_engine_1;
     public TVCAnimationController tvcac_engine_2;
     public TVCAnimationController tvcac_engine_3;
@@ -178,6 +179,7 @@ public class RocketController : MonoBehaviour
 
         if (rb.position.y > height + 50 || rb.position.y < -1 || Mathf.Abs(transform.parent.transform.InverseTransformPoint(rb.position).x) > 30 || Mathf.Abs(transform.parent.transform.InverseTransformPoint(rb.position).z) > 100)
         {
+            cp.Colorize(Color.red);
             ac.EndEpisode(0);
         }
 
@@ -185,10 +187,12 @@ public class RocketController : MonoBehaviour
         {
             if (Mathf.Abs(Vector3.Dot(transform.up, Vector3.right)) < 0.1 && Mathf.Abs(Vector3.Dot(transform.up, Vector3.forward)) < 0.1 && Vector3.Dot(transform.up, Vector3.up) > 0.9)
             {
+                cp.Colorize(Color.green);
                 ac.EndEpisode(1);
             }
             else
             {
+                cp.Colorize(Color.red);
                 ac.EndEpisode(0);
             }
         }
@@ -201,9 +205,10 @@ public class RocketController : MonoBehaviour
 
         rpc.AnimateParticle(isRollPosRCSOn, isRollNegRCSOn, isPitchPosRCSOn, isPitchNegRCSOn);
         epc.AnimateParticle(isEngineOn);
-        tc.SetTelemetryText(10*rb.position.y-7, rb.velocity.magnitude);
+        tc.SetTelemetryText(10 * rb.position.y - 7, rb.velocity.magnitude);
         lspc.UpdateLandingSmoke(10*rb.position.y-7, isEngineOn);
-        erac.isEngineOn = isEngineOn;
+        //erac.isEngineOn = isEngineOn;
+        erac.isEngineOn = false;
         tvcac_engine_1.UpdateTVCAnimation(rollTVC, pitchTVC);
         tvcac_engine_2.UpdateTVCAnimation(rollTVC, pitchTVC);
         tvcac_engine_3.UpdateTVCAnimation(rollTVC, pitchTVC);
@@ -219,6 +224,7 @@ public class RocketController : MonoBehaviour
 
         if (collision.relativeVelocity.y > collision_speed)
         {
+            cp.Colorize(Color.red);
             ac.EndEpisode(0);
         }
     }
