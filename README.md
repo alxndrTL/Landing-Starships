@@ -124,7 +124,9 @@ If you're willing to learn more about RL, here are some guidance and resources f
 
 ​		The total number of parameters in the neural network is about 40k. The algorithm trained for a total of about 200 millions timesteps, which, on my (Intel i7 processor) machine, took about 20 hours. A trained agent has a mean reward of about 0.98, meaning that after training, the agent lands Starship successfully ~98% of the time. I could have stopped training way before 20 hours and still get good performance (>95%) but of course, that performance, even the 98% one, isn't acceptable for practical use. With more training and good hyperparameter tuning, I do believe that performance could go way higher but again, the "black box" effect makes the practical use of RL critical for this task.
 
-[PHOTO PERFS?]
+<p align="center">
+  <img src="https://github.com/Procuste34/Landing-Starships/blob/master/images/results1.JPG" width=500/>
+</p>
 
 ​		For comparison, [DeepMind](https://deepmind.com/)'s famous implementation of Deep Q-learning (DQN) on Atari games uses less than 10K parameters, and trained for a total of 10 millions steps with a CNN neural network (ie. the agent see screenshots of the game, as we humans do). Two reasons can explain the big difference of steps required to learn : first, well, I made this project on my own during a few weeks. Second, the algorithm used by Google DeepMind, called DQN, is fundamentally different than PPO (it's still deep reinforcement learning though). DQN has the advantage of being very data efficient : it can actually learn from the experience generated at anytime during the training. Conversely, PPO throw data away as soon as it has made an update with it : it can't use data from past trajectories.
 
