@@ -63,7 +63,9 @@ If you're willing to learn more about RL, here are some guidance and resources f
 
   ​		In the simulation I created, the atmosphere was not considered and thus the agent doesn't get to control the position of the flaps. Furthermore, I chose to provide to the agent only one throttle level, firstly because then the RL problem was a discrete action problem, and also because from a physical point of view, achieving landing with the full throttle is optimal (more on that later). Apart from that, the agent lands the Starship using TVC (engine gimballing) with a 7° angle in every direction (that number comes from what the Merlin engine is capable of on the Falcon 9's first stage). The agent can of course turn off and on the 3 main engines, as well as a total of 4 RCS thrusters, to help stabilize the orientation of the rocket. With the combination of TVC and RCS, the agent can thus control the roll and pitch of the rocket (the yaw control is neglected)
   
-  [GIF GIMBALLING MOTOR ET RCS ZOOM]
+  <p align="center">
+  <img src="https://github.com/Procuste34/Landing-Starships/blob/master/images/ACTIONS.gif" width="800" />
+</p>
 
   ​		At the start of the simulation, the rocket spawns at an altitude of about 5 km, with a random initial velocity and in the belly flop position (again, with a bit of random initialization). The center of mass of the rocket is set at about 2/3 from the top of the rocket. A landing is considered successful if the speed of the rocket at touchdown is less than 5m/s and the rocket stands upright.
 
