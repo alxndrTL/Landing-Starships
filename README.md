@@ -62,6 +62,7 @@ If you're willing to learn more about RL, here are some guidance and resources f
   ​		In reality, to achieve a landing, Starship will essentially be able to control the throttle level of its 3 engines, the gimbal of these engines, the RCS side thrusters and the position of its body flaps and top fins.
 
   ​		In the simulation I created, the atmosphere was not considered and thus the agent doesn't get to control the position of the flaps. Furthermore, I chose to provide to the agent only one throttle level, firstly because then the RL problem was a discrete action problem, and also because from a physical point of view, achieving landing with the full throttle is optimal (more on that later). Apart from that, the agent lands the Starship using TVC (engine gimballing) with a 7° angle in every direction (that number comes from what the Merlin engine is capable of on the Falcon 9's first stage). The agent can of course turn off and on the 3 main engines, as well as a total of 4 RCS thrusters, to help stabilize the orientation of the rocket. With the combination of TVC and RCS, the agent can thus control the roll and pitch of the rocket (the yaw control is neglected)
+  
   [GIF GIMBALLING MOTOR ET RCS ZOOM]
 
   ​		At the start of the simulation, the rocket spawns at an altitude of about 5 km, with a random initial velocity and in the belly flop position (again, with a bit of random initialization). The center of mass of the rocket is set at about 2/3 from the top of the rocket. A landing is considered successful if the speed of the rocket at touchdown is less than 5m/s and the rocket stands upright.
@@ -70,7 +71,9 @@ If you're willing to learn more about RL, here are some guidance and resources f
 
   ​		The first limitation of this simulation is of course that it doesn't take into account the atmosphere. It follows that precise trajectories and speeds are not followed. Also, another limitation is that the agent is able to turn off and on the 3 main engines instantly (1) and for an unlimited number of times (2), same for the RCS. This does not really reflects reality as the main engines are complex machines which (1) doesn't start instantly and (2) can't restart for a large number of times.
 
-  [GIF BELLY FLOP MANEUVER]
+<p align="center">
+  <img src="https://github.com/Procuste34/Landing-Starships/blob/master/images/BELLYFLOP.gif" width="800" />
+</p>
 
 - ### About the Deep Reinforcement Learning implementation
 
