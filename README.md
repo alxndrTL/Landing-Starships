@@ -2,7 +2,9 @@
 
 ​		This project uses artificial intelligence algorithms, and more precisely deep reinforcement learning algorithms, to make an agent learn by itself how to land an orbital class rocket, Starship. The agent, or the algorithm, observes the environment and chooses actions to successfully land the rocket. Before the so-called "training", the agent just got initialized and basically chooses actions at random. As the training continues, the agent gets reward for doing the task we want it to do: landing the rocket. Based on this reward and how he got it, the agent will update the parameters of its neural network in order to make the actions that led to this reward more probable.
 
-<img src="https://github.com/Procuste34/Landing-Starships/blob/master/images/LANDING_1.gif" width="800" />
+<p align="center">
+  <img src="https://github.com/Procuste34/Landing-Starships/blob/master/images/LANDING_1.gif" width="800" />
+</p>
 
 ### What is Starship ?
 
