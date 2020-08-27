@@ -87,7 +87,9 @@ If you're willing to learn more about RL, here are some guidance and resources f
 
   ​		Practically, the project is made in Unity, which has a nice toolkit called [Unity ML Agents](https://github.com/Unity-Technologies/ml-agents), which makes it possible to interact with an agent in Unity from Python. That is very useful as Python is a very famous language for ML and RL. Also, it supports parallel training of multiple agents in a single environment, which speeds up considerably the training. That's why you can see 32 Starships landing next to each other. The algorithm used, PPO, was a plain out-of-the-box algorithm, I didn't tweak it to match perfectly what I wanted to do. That is something that's worth pointing out. More on that in the Results section.
 
-[GIF LANDINGS]  
+<p align="center">
+  <img src="https://github.com/Procuste34/Landing-Starships/blob/master/images/LANDING_2.gif" width="800" />
+</p>
 
 - ### Could Reinforcement Learning be used by SpaceX ?
 
