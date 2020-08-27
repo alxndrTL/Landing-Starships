@@ -27,9 +27,9 @@
 
 ​		This learning is done, in this case, using the [PPO](https://openai.com/blog/openai-baselines-ppo/) algorithm, developed by [OpenAI](https://openai.com/), and implemented by the Unity team in Python. Learn more about the deep RL implementation in the Technical Details section.
 
-[GIF RAPIDE DU LEARNING VISIBLE]
-
-
+<p align="center">
+  <img src="https://github.com/Procuste34/Landing-Starships/blob/master/images/TRAINING.gif" width="500" />
+</p>
 
 ## How to reproduce this ?
 
