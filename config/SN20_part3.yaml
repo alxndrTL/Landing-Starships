@@ -1,0 +1,79 @@
+behaviors:
+  RocketLanding:
+    trainer_type: ppo
+    hyperparameters:
+      batch_size: 64
+      buffer_size: 1024
+      learning_rate: 3.0e-4
+      beta: 0.01
+      epsilon: 0.2
+      lambd: 0.99
+      num_epoch: 3
+      learning_rate_schedule: linear
+    network_settings:
+      normalize: true
+      hidden_units: 128
+      num_layers: 2
+    reward_signals:
+      extrinsic:
+        gamma: 0.99
+        strength: 1.0
+    behavioral_cloning:
+      demo_path: Unity/SN19/Assets/Demonstrations/old_Demo3D.demo
+      strength: 0.5
+      steps: 500000
+      batch_size: 64
+      num_epoch: 3
+      samples_per_update: 512
+    max_steps: 100000000
+    time_horizon: 64
+    summary_freq: 10000
+environment_parameters:
+    rocket_landing_env_param_1:
+        curriculum:
+            - name: niveau2
+              value: 60
+    rocket_landing_env_param_2:
+        curriculum:
+            - name: niveau1
+              completion_criteria:
+                measure: progress
+                behavior: RocketLanding
+                threshold: 0.01
+                min_lesson_length: 100
+                signal_smoothing: true
+                require_reset: true
+              value: 4
+            - name: niveau2
+              completion_criteria:
+                measure: progress
+                behavior: RocketLanding
+                threshold: 0.025
+                min_lesson_length: 100
+                signal_smoothing: true
+                require_reset: true
+              value: 7
+            - name: niveau3
+              completion_criteria:
+                measure: progress
+                behavior: RocketLanding
+                threshold: 0.05
+                min_lesson_length: 100
+                signal_smoothing: true
+                require_reset: true
+              value: 10
+            - name: niveau4
+              completion_criteria:
+                measure: progress
+                behavior: RocketLanding
+                threshold: 0.075
+                min_lesson_length: 100
+                signal_smoothing: true
+                require_reset: true
+              value: 15
+            - name: niveau5
+              value: 25
+    rocket_landing_env_param_3:
+        curriculum:
+            - name: niveau5
+              value: 20

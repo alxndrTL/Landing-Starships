@@ -1,0 +1,49 @@
+behaviors:
+  RocketLanding:
+    trainer_type: ppo
+    hyperparameters:
+      batch_size: 128
+      buffer_size: 2048
+      learning_rate: 4.45e-5
+      beta: 2.2e-3
+      epsilon: 0.126
+      lambd: 0.99
+      num_epoch: 3
+      learning_rate_schedule: linear
+    network_settings:
+      normalize: true
+      hidden_units: 128
+      num_layers: 2
+    reward_signals:
+      extrinsic:
+        gamma: 0.99
+        strength: 1.0
+    max_steps: 100000000
+    time_horizon: 64
+    summary_freq: 10000
+environment_parameters:
+    rocket_landing_env_param_1:
+        curriculum:
+            - name: niveau13
+              value: 550
+    rocket_landing_env_param_2:
+        curriculum:
+            - name: niveau7
+              value: 90
+    rocket_landing_env_param_3:
+        curriculum:
+            - name: niveau7
+              value: 90
+    rocket_landing_env_param_4:
+        curriculum:
+            - name: niveau1
+              completion_criteria:
+                measure: progress
+                behavior: RocketLanding
+                threshold: 0.05
+                min_lesson_length: 100
+                signal_smoothing: true
+                require_reset: true
+              value: 0
+            - name: niveau2
+              value: 1

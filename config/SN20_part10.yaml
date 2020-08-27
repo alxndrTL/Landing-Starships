@@ -1,0 +1,151 @@
+behaviors:
+  RocketLanding:
+    trainer_type: ppo
+    hyperparameters:
+      batch_size: 128
+      buffer_size: 2048
+      learning_rate: 2.84e-5
+      beta: 1.41e-3
+      epsilon: 0.116
+      lambd: 0.99
+      num_epoch: 3
+      learning_rate_schedule: linear
+    network_settings:
+      normalize: true
+      hidden_units: 128
+      num_layers: 2
+    reward_signals:
+      extrinsic:
+        gamma: 0.99
+        strength: 1.0
+    max_steps: 100000000
+    time_horizon: 64
+    summary_freq: 10000
+environment_parameters:
+    init_height:
+        curriculum:
+            - name: niveau13
+              value: 550
+    z_init_offset:
+        curriculum:
+            - name: niveau7
+              value: 90
+    pitch_init_angle:
+        curriculum:
+            - name: niveau7
+              value: 90
+    z_init_speed:
+        curriculum:
+            - name: niveau6
+              value: 1
+    tvc_angle:
+        curriculum:
+            - name: niveau3
+              value: 7
+    rcs_thrust:
+        curriculum:
+            - name: niveau8
+              completion_criteria:
+                measure: progress
+                behavior: RocketLanding
+                threshold: 0.15
+                min_lesson_length: 100
+                signal_smoothing: true
+                require_reset: true
+              value: 0.2
+            - name: niveau9
+              value: 0.1
+    engine_thrust:
+        curriculum:
+            - name: niveau1
+              completion_criteria:
+                measure: progress
+                behavior: RocketLanding
+                threshold: 0.05
+                min_lesson_length: 100
+                signal_smoothing: true
+                require_reset: true
+              value: 5000
+            - name: niveau2
+              completion_criteria:
+                measure: progress
+                behavior: RocketLanding
+                threshold: 0.0725
+                min_lesson_length: 100
+                signal_smoothing: true
+                require_reset: true
+              value: 5250
+            - name: niveau3
+              completion_criteria:
+                measure: progress
+                behavior: RocketLanding
+                threshold: 0.10
+                min_lesson_length: 100
+                signal_smoothing: true
+                require_reset: true
+              value: 5500
+            - name: niveau4
+              completion_criteria:
+                measure: progress
+                behavior: RocketLanding
+                threshold: 0.125
+                min_lesson_length: 100
+                signal_smoothing: true
+                require_reset: true
+              value: 5750
+            - name: niveau5
+              completion_criteria:
+                measure: progress
+                behavior: RocketLanding
+                threshold: 0.20
+                min_lesson_length: 100
+                signal_smoothing: true
+                require_reset: true
+              value: 6000
+            - name: niveau6
+              completion_criteria:
+                measure: progress
+                behavior: RocketLanding
+                threshold: 0.225
+                min_lesson_length: 100
+                signal_smoothing: true
+                require_reset: true
+              value: 6500
+            - name: niveau7
+              completion_criteria:
+                measure: progress
+                behavior: RocketLanding
+                threshold: 0.25
+                min_lesson_length: 100
+                signal_smoothing: true
+                require_reset: true
+              value: 7000
+            - name: niveau7
+              completion_criteria:
+                measure: progress
+                behavior: RocketLanding
+                threshold: 0.275
+                min_lesson_length: 100
+                signal_smoothing: true
+                require_reset: true
+              value: 7500
+            - name: niveau7
+              completion_criteria:
+                measure: progress
+                behavior: RocketLanding
+                threshold: 0.30
+                min_lesson_length: 100
+                signal_smoothing: true
+                require_reset: true
+              value: 8000
+            - name: niveau7
+              completion_criteria:
+                measure: progress
+                behavior: RocketLanding
+                threshold: 0.325
+                min_lesson_length: 100
+                signal_smoothing: true
+                require_reset: true
+              value: 8500
+            - name: niveau8
+              value: 9000
