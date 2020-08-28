@@ -102,7 +102,7 @@ If you're willing to learn more about RL, here are some guidance and resources f
   ​	RL is not yet ready for practical use, and so it's far less for such tasks. However, I'm sure that we're only a few breakthrough papers away from seeing RL being able to scale to real world problems. And then, we'll talk about Starship landing using RL.
 
 - ### So why bother ?
-
+  ​	If it is very difficult to use RL in the real-world problem, why bother with this project ? Or simply, why bother with RL at all ? Well first, RL is still in a phase where the most things happening relating to it are research based : there's a lot of things to be discovered to implement RL on a real world problem. Once this will be possible, then RL will really revolutionize the market. Why ? Well, taking my project as my example, I didn'nt have to know anything physic related to the landing of the rocket : I just had to setup the environment and put my agents in it. There's no need of domain-knowledge to with RL (in a perfect world).	
 
 - ### Has there been other work similar to this ?
 
