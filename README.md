@@ -101,6 +101,8 @@ If you're willing to learn more about RL, here are some guidance and resources f
 
   ​	RL is not yet ready for practical use, and so it's far less for such tasks. However, I'm sure that we're only a few breakthrough papers away from seeing RL being able to scale to real world problems. And then, we'll talk about Starship landing using RL.
 
+- ### So why bother ?
+
 
 - ### Has there been other work similar to this ?
 
